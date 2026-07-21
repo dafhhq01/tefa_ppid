@@ -14,7 +14,7 @@ class InformationCategoryController extends Controller
     {
         $categories = information_category::latest()->get();
 
-        return view('information-categories.index', compact('categories'));
+        return view('index', compact('categories'));
     }
 
     /**
@@ -23,12 +23,12 @@ class InformationCategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:information_categories,name',
+            'slug' => 'required|string|max:255|unique:information_categories,slug',
         ]);
 
         information_category::create($validated);
 
-        return redirect()->with('success', 'Information category created successfully.');
+        return redirect()->route('information-categories.index')->with('success', 'Information category created successfully.');
     }
 
     /**
@@ -37,7 +37,7 @@ class InformationCategoryController extends Controller
     public function update(Request $request, information_category $information_category)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:information_categories,name,' . $$information_category->id,
+            'slug' => 'required|string|max:255|unique:information_categories,slug,' . $$information_category->id,
         ]);
 
         $information_category->update($validated);
