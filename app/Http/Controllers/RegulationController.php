@@ -52,6 +52,7 @@ class RegulationController extends Controller
 
             $validated['file'] = $filename;
         }
+        $validated['slug'] = str()->slug($request->title);
 
         Regulation::create($validated);
 
@@ -113,7 +114,7 @@ class RegulationController extends Controller
 
         $regulation->update($validated);
 
-        return redirect()->route('informations.index')->with('success','regulation updated successfully.');
+        return redirect()->route('regulation.index')->with('success','regulation updated successfully.');
     }
 
     /**
@@ -123,6 +124,6 @@ class RegulationController extends Controller
     {
         $regulation->delete();
 
-        return redirect()->route('information.index')->with('success', 'regulation deleted successfully.');
+        return redirect()->route('regulation.index')->with('success', 'regulation deleted successfully.');
     }
 }

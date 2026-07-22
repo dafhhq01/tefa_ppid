@@ -43,6 +43,8 @@ class InformationController extends Controller
             'external_url' => 'nullable|url|required_if:is_external_link,true',
         ]);
 
+        $filename = null;
+
         if($request->hasFile('file') && !$request->boolean('is_external_link')){
             $file = $request->file('file');
             $filename = time().'_'.$file->getClientOriginalName();
@@ -60,7 +62,7 @@ class InformationController extends Controller
             'category_id' => $request->category_id,
             'title' => $request->title,
             'slug' => $slug,
-            'file' => $validated['file'] ?? null,
+            'file' => $filename,
             'external_url' => $request->external_url,
             'is_external_link' => $request->is_external_link,
             'button_label' => $request->button_label,
@@ -128,7 +130,7 @@ class InformationController extends Controller
             $validated['file'] = $information->file;
         }
 
-        $slug = str()->slug($request->title);
+        $validated['slug'] = str()->slug($request->title);
 
         $information->update($validated);
 

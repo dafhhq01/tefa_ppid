@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('regulations', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->longText('content');
             $table->string('file')->nullable();
             $table->string('external_url')->nullable();

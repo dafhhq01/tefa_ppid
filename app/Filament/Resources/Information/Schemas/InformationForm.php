@@ -8,6 +8,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use Illuminate\Http\UploadedFile;
 
 class InformationForm
 {
@@ -28,8 +29,12 @@ class InformationForm
                     ->disk('public')
                     ->directory('information')
                     ->visibility('public')
+                    ->columnSpanFull()
                     ->visible(fn ($get) => !$get('is_external_link'))
-                    ->required(fn ($get) => !$get('is_external_link')),
+                    ->required(fn ($get) => !$get('is_external_link'))
+                    ->getUploadedFileNameForStorageUsing(
+                        fn (UploadedFile $file): string => time().'_'.$file->getClientOriginalName()
+                    ),
                 Toggle::make('is_external_link')
                     ->live()
                     ->required()
