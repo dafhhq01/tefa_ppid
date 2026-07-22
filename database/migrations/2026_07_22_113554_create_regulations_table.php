@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('file')->nullable();
             $table->string('external_url')->nullable();
             $table->enum('type', ['page', 'link']);
-            $table->string('order');
+            $table->unsignedInteger('order');
             $table->timestamps();
         });
     }
