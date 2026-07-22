@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\InformationCategory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -20,6 +21,6 @@ class information extends Model
 
     public function category()
     {
-        return $this->belongsTo(information_category::class);
+        return $this->belongsTo(InformationCategory::class);
     }
 }

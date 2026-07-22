@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\information;
-use App\Models\information_category;
+use App\Models\InformationCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -44,11 +44,6 @@ class InformationController extends Controller
         ]);
 
         if($request->hasFile('file') && !$request->boolean('is_external_link')){
-            dd(
-                'masuk upload',
-                $request->file('file'),
-                $request->boolean('is_external_link')
-            );
             $file = $request->file('file');
             $filename = time().'_'.$file->getClientOriginalName();
 
@@ -92,7 +87,7 @@ class InformationController extends Controller
      */
     public function edit(information $information)
     {
-        $categories = information_category::all();
+        $categories = InformationCategory::all();
 
         return view('informations.edit', compact('information','categories'));
     }
@@ -108,9 +103,11 @@ class InformationController extends Controller
             'content' => 'nullable',
             'file' => 'nullable|file|max:5000',
             'is_external_link' => 'required',
+            'external_url' => 'nullable',
+            'button_label' => 'nullable',
         ]);
 
-        if($request->hasFile('file')){
+        if($request->hasFile('file') && !$request->boolean('is_external_link')){
             if($information->file){
                 Storage::disk('public')->delete('documents/'.$information->file);
             }
@@ -131,7 +128,7 @@ class InformationController extends Controller
             $validated['file'] = $information->file;
         }
 
-        $validated['slug'] = str()->slug($request->title);
+        $slug = str()->slug($request->title);
 
         $information->update($validated);
 

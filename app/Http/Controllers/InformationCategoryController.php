@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\information_category;
+use App\Models\InformationCategory;
 use Illuminate\Http\Request;
 
 class InformationCategoryController extends Controller
@@ -12,7 +12,7 @@ class InformationCategoryController extends Controller
      */
     public function index()
     {
-        $categories = information_category::latest()->get();
+        $categories = InformationCategory::latest()->get();
 
         return view('index', compact('categories'));
     }
@@ -26,21 +26,26 @@ class InformationCategoryController extends Controller
             'slug' => 'required|string|max:255|unique:information_categories,slug',
         ]);
 
-        information_category::create($validated);
+        InformationCategory::create($validated);
 
         return redirect()->route('information-categories.index')->with('success', 'Information category created successfully.');
+    }
+
+    public function edit(InformationCategory $informationCategory)
+    {
+        return view('information-category.edit', compact('informationCategory'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, information_category $information_category)
+    public function update(Request $request, InformationCategory $informationCategory)
     {
         $validated = $request->validate([
-            'slug' => 'required|string|max:255|unique:information_categories,slug,' . $$information_category->id,
+            'slug' => 'required|string|max:255|unique:information_categories,slug,' . $informationCategory->id,
         ]);
 
-        $information_category->update($validated);
+        $informationCategory->update($validated);
 
         return redirect()->route('information-categories.index')->with('success', 'Information category updated successfully.');
 
@@ -49,9 +54,9 @@ class InformationCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(information_category $information_category)
+    public function destroy(InformationCategory $informationCategory)
     {
-        $information_category->delete();
+        $informationCategory->delete();
 
         return redirect()->route('information-categories.index')->with('success', 'Information category deleted successfully.');
     }
