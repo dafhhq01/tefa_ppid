@@ -43,7 +43,12 @@ class InformationController extends Controller
             'external_url' => 'nullable|url|required_if:is_external_link,true',
         ]);
 
-        if($request->hasFile('file') && !$request->is_external_link){
+        if($request->hasFile('file') && !$request->boolean('is_external_link')){
+            dd(
+                'masuk upload',
+                $request->file('file'),
+                $request->boolean('is_external_link')
+            );
             $file = $request->file('file');
             $filename = time().'_'.$file->getClientOriginalName();
 
@@ -52,15 +57,26 @@ class InformationController extends Controller
                 $filename,
                 'public'
             );
-
-            $validated['file'] = $filename;
         }
 
-        $validated['slug'] = Str::slug($request->title);
+        $slug = Str::slug($request->title);
 
-        Information::create($validated);
+        information::create([
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'slug' => $slug,
+            'file' => $validated['file'] ?? null,
+            'external_url' => $request->external_url,
+            'is_external_link' => $request->is_external_link,
+            'button_label' => $request->button_label,
+        ]);
 
-        return redirect()->route('information-categories.index')->with('success', 'Information created successfully.');
+        return redirect()->route('information.index')->with('success', 'Information created successfully.');
+    }
+
+    public function create()
+    {
+        return view('information.create');
     }
 
     /**
