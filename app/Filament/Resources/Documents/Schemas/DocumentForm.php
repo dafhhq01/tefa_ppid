@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Documents\Schemas;
 
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -13,8 +14,12 @@ class DocumentForm
             ->components([
                 TextInput::make('title')
                     ->required(),
-                TextInput::make('category'),
                 TextInput::make('file')
+                    ->required(),
+                TextInput::make('category')
+                    ->required(),
+                Select::make('type')
+                    ->options(['public' => 'Public', 'procurement' => 'Procurement'])
                     ->required(),
             ]);
     }

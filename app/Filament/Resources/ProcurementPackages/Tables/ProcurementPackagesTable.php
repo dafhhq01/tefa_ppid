@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Documents\Tables;
+namespace App\Filament\Resources\ProcurementPackages\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -9,7 +9,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class DocumentsTable
+class ProcurementPackagesTable
 {
     public static function configure(Table $table): Table
     {
@@ -17,12 +17,16 @@ class DocumentsTable
             ->columns([
                 TextColumn::make('title')
                     ->searchable(),
+                TextColumn::make('year'),
+                TextColumn::make('stage')
+                    ->badge(),
                 TextColumn::make('file')
                     ->searchable(),
-                TextColumn::make('category')
+                TextColumn::make('external_url')
                     ->searchable(),
-                TextColumn::make('type')
-                    ->badge(),
+                TextColumn::make('parent_id')
+                    ->numeric()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

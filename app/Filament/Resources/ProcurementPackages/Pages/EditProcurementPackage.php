@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\News\Pages;
+namespace App\Filament\Resources\ProcurementPackages\Pages;
 
-use App\Filament\Resources\News\NewsResource;
+use App\Filament\Resources\ProcurementPackages\ProcurementPackageResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditNews extends EditRecord
+class EditProcurementPackage extends EditRecord
 {
-    protected static string $resource = NewsResource::class;
+    protected static string $resource = ProcurementPackageResource::class;
 
     protected function getHeaderActions(): array
     {

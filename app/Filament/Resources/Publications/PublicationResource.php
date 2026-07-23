@@ -5,7 +5,9 @@ namespace App\Filament\Resources\Publications;
 use App\Filament\Resources\Publications\Pages\CreatePublication;
 use App\Filament\Resources\Publications\Pages\EditPublication;
 use App\Filament\Resources\Publications\Pages\ListPublications;
+use App\Filament\Resources\Publications\Pages\ViewPublication;
 use App\Filament\Resources\Publications\Schemas\PublicationForm;
+use App\Filament\Resources\Publications\Schemas\PublicationInfolist;
 use App\Filament\Resources\Publications\Tables\PublicationsTable;
 use App\Models\Publication;
 use BackedEnum;
@@ -27,6 +29,11 @@ class PublicationResource extends Resource
         return PublicationForm::configure($schema);
     }
 
+    public static function infolist(Schema $schema): Schema
+    {
+        return PublicationInfolist::configure($schema);
+    }
+
     public static function table(Table $table): Table
     {
         return PublicationsTable::configure($table);
@@ -44,6 +51,7 @@ class PublicationResource extends Resource
         return [
             'index' => ListPublications::route('/'),
             'create' => CreatePublication::route('/create'),
+            'view' => ViewPublication::route('/{record}'),
             'edit' => EditPublication::route('/{record}/edit'),
         ];
     }
