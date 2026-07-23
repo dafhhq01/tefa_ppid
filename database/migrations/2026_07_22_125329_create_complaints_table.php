@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('subject');
-            $table->text('massage');
+            $table->text('message');
             $table->string('attacment')->nullable();
             $table->enum('status', ['pending', 'process', 'completed', 'rejected'])->default('pending');
             $table->timestamps();
