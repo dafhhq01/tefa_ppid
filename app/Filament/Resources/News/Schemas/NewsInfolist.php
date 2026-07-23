@@ -4,7 +4,7 @@ namespace App\Filament\Resources\News\Schemas;
 
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Components\ImageEntry; // Tambahan import
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Schemas\Schema;
 
 class NewsInfolist
@@ -17,25 +17,43 @@ class NewsInfolist
                     ->label('Judul Berita')
                     ->weight('bold')
                     ->size('lg'),
+
                 TextEntry::make('slug')
                     ->color('gray'),
-                ImageEntry::make('thumbnail') // Render sebagai gambar
+
+                // PERBAIKAN: ImageEntry dengan URL yang benar
+                ImageEntry::make('thumbnail')
                     ->label('Thumbnail')
-                    ->placeholder('Tidak ada thumbnail'),
-                TextEntry::make('author.name') // Tampilkan nama author
+                    ->getStateUsing(function ($record) {
+                        if (!$record->thumbnail) {
+                            return null;
+                        }
+                        // Gunakan url() helper, bukan asset()
+                        return url('storage/' . $record->thumbnail);
+                    })
+                    ->height(200)
+                    ->width(300)
+                    ->placeholder('Tidak ada thumbnail')
+                    ->columnSpanFull(),
+
+                TextEntry::make('author.name')
                     ->label('Author'),
+
                 TextEntry::make('excerpt')
                     ->label('Ringkasan')
                     ->placeholder('-')
                     ->columnSpanFull(),
+
                 TextEntry::make('content')
                     ->label('Isi Berita')
-                    ->html() // Render tag HTML dari Rich Editor
+                    ->html()
                     ->columnSpanFull(),
+
                 TextEntry::make('published_at')
                     ->label('Tanggal Publish')
                     ->dateTime()
                     ->placeholder('-'),
+
                 IconEntry::make('is_featured')
                     ->label('Featured di Homepage')
                     ->boolean(),

@@ -12,9 +12,15 @@ class PublicationSeeder extends Seeder
         $publications = [
             [
                 'title' => 'Laporan Tahunan PPID 2025',
-                'description' => 'Laporan tahunan pelaksanaan tugas dan fungsi PPID SMKN 1 Katapang periode 2025.',
                 'file' => 'publications/laporan-tahunan-2025.pdf',
+                'category' => 'laporan',
                 'published_at' => now()->subDays(30),
+            ],
+            [
+                'title' => 'Laporan Kinerja Sekolah 2025',
+                'file' => 'publications/laporan-kinerja-2025.pdf',
+                'category' => 'laporan',
+                'published_at' => now()->subDays(15),
             ],
         ];
 

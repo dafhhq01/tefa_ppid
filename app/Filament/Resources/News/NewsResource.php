@@ -58,4 +58,22 @@ class NewsResource extends Resource
             'edit' => EditNews::route('/{record}/edit'),
         ];
     }
+
+    public static function mutateFormDataBeforeSave(array $data): array
+    {
+        $recordId = request()->route('record');
+
+        if ($recordId) {
+            $record = News::find($recordId);
+
+            if ($record && isset($data['thumbnail']) && $record->thumbnail !== $data['thumbnail']) {
+                $oldFile = storage_path('app/public/news/' . $record->thumbnail);
+                if (file_exists($oldFile)) {
+                    unlink($oldFile);
+                }
+            }
+        }
+
+        return $data;
+    }
 }

@@ -23,7 +23,7 @@ class DocumentResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
     protected static string|\UnitEnum|null $navigationGroup = 'Publication & Document';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
     public static function form(Schema $schema): Schema
     {
         return DocumentForm::configure($schema);

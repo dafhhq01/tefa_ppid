@@ -3,12 +3,22 @@
 namespace Database\Seeders;
 
 use App\Models\News;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class NewsSeeder extends Seeder
 {
     public function run()
     {
+        // Ambil user pertama sebagai author (atau buat jika belum ada)
+        $author = User::first();
+        if (!$author) {
+            $author = User::factory()->create([
+                'name' => 'Admin PPID',
+                'email' => 'admin@ppid.com',
+            ]);
+        }
+
         $news = [
             [
                 'title' => 'PPID SMKN 1 Katapang Resmi Meluncurkan Website Baru',
@@ -25,9 +35,10 @@ class NewsSeeder extends Seeder
                 </ul>
                 <p>Dengan peluncuran ini, masyarakat dapat dengan mudah mengakses informasi yang dibutuhkan tanpa harus datang langsung ke sekolah.</p>',
                 'published_at' => now()->subDays(5),
-                'author_id' => null,
+                'author_id' => $author->id, // ISI DENGAN ID USER
                 'is_featured' => true,
             ],
+            // Tambah berita lain jika perlu
         ];
 
         foreach ($news as $item) {
