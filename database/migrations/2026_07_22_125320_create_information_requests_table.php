@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('information_requests', function (Blueprint $table) {
             $table->id();
-            $table->sting('ticket_number')->unique(); // Format REQ-********-**** (year, mont, date - no)
-            $table->sting('name');
-            $table->sting('email');
-            $table->sting('phone');
-            $table->sting('identity_number');
-            $table->sting('subject');
-            $table->text('massage');
-            $table->sting('attacment')->nullable();
+            $table->string('ticket_number')->unique(); // Format REQ-********-**** (year, mont, date - no)
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('identity_number');
+            $table->string('subject');
+            $table->text('message');
+            $table->string('attacment')->nullable();
             $table->enum('status', ['pending', 'process', 'completed', 'rejected'])->default('pending');
             $table->timestamps();
         });
