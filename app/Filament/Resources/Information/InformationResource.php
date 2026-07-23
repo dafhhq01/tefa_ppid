@@ -18,7 +18,7 @@ class InformationResource extends Resource
 {
     protected static ?string $model = Information::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-information-circle';
 
     protected static ?string $recordTitleAttribute = 'title';
 
