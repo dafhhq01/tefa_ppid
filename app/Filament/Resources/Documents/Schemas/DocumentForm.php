@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Documents\Schemas;
 
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
 use Filament\Schemas\Schema;
 
 class DocumentForm
@@ -14,7 +15,8 @@ class DocumentForm
             ->components([
                 TextInput::make('title')
                     ->required(),
-                TextInput::make('file')
+                FileUpload::make('file')
+                    ->directory('documents')
                     ->required(),
                 TextInput::make('category')
                     ->required(),

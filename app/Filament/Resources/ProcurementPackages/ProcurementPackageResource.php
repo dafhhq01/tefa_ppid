@@ -20,8 +20,10 @@ class ProcurementPackageResource extends Resource
 {
     protected static ?string $model = ProcurementPackage::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBriefcase;
+    protected static string|\UnitEnum|null $navigationGroup = 'Publication & Document';
 
+    protected static ?int $navigationSort = 4;
     protected static ?string $recordTitleAttribute = 'procurement package';
 
     public static function form(Schema $schema): Schema

@@ -27,9 +27,10 @@ class NewsTable
                     ->sortable(),
                 IconColumn::make('is_featured')
                     ->boolean(),
-                TextColumn::make('author_id')
-                    ->numeric()
-                    ->sortable(),
+                TextColumn::make('author.name')
+                    ->label('Author')
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
