@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\InformationCategoryController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\RegulationController;
@@ -12,3 +13,4 @@ Route::get('/', function () {
 Route::resource('information-categories', InformationCategoryController::class);
 Route::resource('informations', InformationController::class);
 Route::resource('regulations', RegulationController::class);
+Route::resource('faqs', FaqController::class);
