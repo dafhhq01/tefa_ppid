@@ -12,7 +12,7 @@ class InformationCategoryForm
     {
         return $schema
             ->components([
-                TextInput::make('slug')
+                TextInput::make('name')
                     ->required(),
                 Textarea::make('description')
                     ->columnSpanFull(),

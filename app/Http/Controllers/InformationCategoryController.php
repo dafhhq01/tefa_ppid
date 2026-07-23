@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\InformationCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class InformationCategoryController extends Controller
 {
@@ -23,9 +24,11 @@ class InformationCategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'slug' => 'required|string|max:255|unique:information_categories,slug',
+            'name' => 'required|string|max:255',
         ]);
 
+        $validated['description'] = $request->description;
+        $validated['slug'] = Str::slug($request->name);
         InformationCategory::create($validated);
 
         return redirect()->route('information-categories.index')->with('success', 'Information category created successfully.');

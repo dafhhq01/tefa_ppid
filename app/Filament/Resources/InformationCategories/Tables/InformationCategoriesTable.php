@@ -14,6 +14,8 @@ class InformationCategoriesTable
     {
         return $table
             ->columns([
+                TextColumn::make('name')
+                    ->searchable(),
                 TextColumn::make('slug')
                     ->searchable(),
                 TextColumn::make('description')
