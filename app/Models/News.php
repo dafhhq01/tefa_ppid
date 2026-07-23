@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
@@ -16,8 +16,8 @@ class News extends Model
         'excerpt',
         'content',
         'published_at',
-        'author_id',
-        'is_featured'
+        'is_featured',
+        'author_id'
     ];
 
     protected $casts = [
@@ -25,6 +25,7 @@ class News extends Model
         'is_featured' => 'boolean',
     ];
 
+    // Relasi ke User pembuat berita
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');

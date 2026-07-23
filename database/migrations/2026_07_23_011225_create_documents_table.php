@@ -4,18 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('category')->nullable(); // misal: pengadaan, laporan, dll.
             $table->string('file');
+            $table->string('category'); // Sesuai panduan bisa berisi SOP, Pelayanan, Informasi, dll
+            $table->enum('type', ['public', 'procurement']);
             $table->timestamps();
         });
     }
