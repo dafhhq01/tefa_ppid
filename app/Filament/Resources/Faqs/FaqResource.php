@@ -20,7 +20,7 @@ class FaqResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-question-mark-circle';
 
-    protected static ?string $recordTitleAttribute = 'Faq';
+    protected static ?string $recordTitleAttribute = 'question';
 
     public static function form(Schema $schema): Schema
     {
