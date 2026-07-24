@@ -44,22 +44,16 @@ class News extends Model
     protected static function booted()
     {
         static::updating(function ($model) {
+            // Jika thumbnail diganti dan sebelumnya punya thumbnail lama
             if ($model->isDirty('thumbnail') && $model->getOriginal('thumbnail')) {
-                $oldFile = $model->getOriginal('thumbnail');
-                $path = 'public/news/' . $oldFile;
-
-                if (Storage::exists($path)) {
-                    Storage::delete($path);
-                }
+                Storage::disk('public')->delete($model->getOriginal('thumbnail'));
             }
         });
 
         static::deleting(function ($model) {
+            // Saat berita dihapus, hapus juga thumbnail-nya
             if ($model->thumbnail) {
-                $path = 'public/news/' . $model->thumbnail;
-                if (Storage::exists($path)) {
-                    Storage::delete($path);
-                }
+                Storage::disk('public')->delete($model->thumbnail);
             }
         });
     }
