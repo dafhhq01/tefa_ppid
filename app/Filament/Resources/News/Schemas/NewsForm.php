@@ -47,22 +47,10 @@ class NewsForm
                     ->visibility('public')
                     ->maxSize(2048)
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/webp'])
-                    ->default(function ($record) {
-                        if ($record && $record->thumbnail) {
-                            return $record->thumbnail;
-                        }
-                        return null;
-                    })
+                    ->helperText('Gambar akan otomatis dipotong (crop) menyesuaikan rasio 16:9 agar tampilan rapi di Homepage.')
                     ->getUploadedFileNameForStorageUsing(function ($file) {
-                        // Generate random name
                         $extension = $file->getClientOriginalExtension();
-                        return Str::random(40) . '.' . $extension;
-                    })
-                    ->deleteUploadedFileUsing(function ($file) {
-                        // Hanya untuk hapus manual di form (tetap dipertahankan)
-                        if ($file && Storage::exists('public/news/' . $file)) {
-                            Storage::delete('public/news/' . $file);
-                        }
+                        return \Illuminate\Support\Str::random(40) . '.' . $extension;
                     }),
 
                 Textarea::make('excerpt')

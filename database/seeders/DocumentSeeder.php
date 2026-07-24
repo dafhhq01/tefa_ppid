@@ -14,7 +14,14 @@ class DocumentSeeder extends Seeder
             [
                 'title' => 'RAB Pembangunan Gedung Workshop SMKN 1 Katapang',
                 'category' => 'pengadaan',
+                'type' => 'procurement',
                 'file' => 'documents/rab-workshop.pdf',
+            ],
+            [
+                'title' => 'SOP Pelayanan Informasi PPID',
+                'category' => 'SOP',
+                'type' => 'public',
+                'file' => 'documents/sop-ppid.pdf',
             ],
 
         ];
