@@ -2,64 +2,72 @@
 
 namespace App\Filament\Resources\StatusHistories;
 
-use App\Filament\Resources\StatusHistories\Pages\ManageStatusHistories;
+use App\Filament\Resources\StatusHistories\Pages;
 use App\Models\StatusHistory;
-use BackedEnum;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
 
 class StatusHistoryResource extends Resource
 {
     protected static ?string $model = StatusHistory::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | \UnitEnum | null $navigationGroup = 'Layanan PPID';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-clock';
+    protected static ?string $navigationLabel = 'Riwayat Status Log';
+    protected static ?int $navigationSort = 3;
 
-    protected static ?string $recordTitleAttribute = 'status';
-
-    public static function form(Schema $schema): Schema
+    // MATIKAN tombol Create agar admin tidak bisa membuat log palsu manual
+    public static function canCreate(): bool
     {
-        return $schema
-            ->components([
-                TextInput::make('status')
-                    ->required()
-                    ->maxLength(255),
-            ]);
+        return false;
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('status')
             ->columns([
+                TextColumn::make('informationRequest.ticket_number')
+                    ->label('No. Tiket Permohonan')
+                    ->searchable()
+                    ->sortable()
+                    ->default('—'),
+
                 TextColumn::make('status')
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'pending' => 'warning',
+                        'process' => 'info',
+                        'completed' => 'success',
+                        'rejected' => 'danger',
+                        default => 'gray',
+                    }),
+
+                TextColumn::make('note')
+                    ->label('Catatan Admin')
+                    ->limit(50)
                     ->searchable(),
+
+                TextColumn::make('changer.name')
+                    ->label('Diubah Oleh')
+                    ->default('Sistem Otomatis')
+                    ->sortable(),
+
+                TextColumn::make('created_at')
+                    ->label('Waktu Perubahan')
+                    ->dateTime('d M Y, H:i:s')
+                    ->sortable(),
             ])
-            ->filters([
-                //
-            ])
-            ->recordActions([
-                EditAction::make(),
-                DeleteAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+            ->defaultSort('created_at', 'desc')
+            ->actions([
+                \Filament\Actions\ViewAction::make(),
             ]);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => ManageStatusHistories::route('/'),
+            'index' => Pages\ManageStatusHistories::route('/'),
         ];
     }
 }
