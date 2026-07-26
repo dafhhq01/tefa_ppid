@@ -15,11 +15,12 @@ class DatabaseSeeder extends Seeder
             RolePermissionSeeder::class,
         ]);
 
-        User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@ppid.test',
-            'password' => bcrypt('password123'),
-        ]);
+        // Udah ada di RolePermissionSeeder
+        // User::factory()->create([
+        //     'name' => 'admin',
+        //     'email' => 'admin@ppid.test',
+        //     'password' => bcrypt('password123'),
+        // ]);
 
         $this->call([
             ServiceSeeder::class,
