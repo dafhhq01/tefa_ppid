@@ -6,8 +6,8 @@ use App\Models\InformationRequest;
 use App\Models\Complaint;
 use App\Models\StatusHistory;
 use Illuminate\Http\Request;
-use illuminate\Support\Facades\DB;
-use illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PublicServiceController extends Controller
 {
