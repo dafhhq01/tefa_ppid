@@ -17,10 +17,7 @@ return new class extends Migration
             $table->string('position');
             $table->string('photo')->nullable();
 
-            $table->foreignId('parent_id')
-            ->nullable()
-            ->constrained()
-            ->nullOnDelete();
+            $table->foreignId('parent_id')->nullable()->constrained('organization_members')->onDelete('set null');
 
             $table->unsignedInteger('sort_order')->default(0);
 
