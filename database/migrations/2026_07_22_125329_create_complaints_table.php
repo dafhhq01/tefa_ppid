@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('subject');
             $table->text('message');
-            $table->string('attacment')->nullable();
+            $table->string('attachment')->nullable();
             $table->enum('status', ['pending', 'process', 'completed', 'rejected'])->default('pending');
             $table->timestamps();
         });
