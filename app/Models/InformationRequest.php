@@ -14,8 +14,8 @@ class InformationRequest extends Model
         'phone',
         'identity_number',
         'subject',
-        'massage',
-        'attacment',
+        'message',
+        'attachment',
         'status',
     ];
 

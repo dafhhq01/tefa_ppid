@@ -12,8 +12,8 @@ class Complaint extends Model
         'email',
         'phone',
         'subject',
-        'massage',
-        'attacment',
+        'message',
+        'attachment',
         'status',
     ];
 }
