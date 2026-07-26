@@ -9,6 +9,12 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
+    
+        // seeder Role & Permission
+        $this->call([
+            RolePermissionSeeder::class,
+        ]);
+
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@ppid.test',
