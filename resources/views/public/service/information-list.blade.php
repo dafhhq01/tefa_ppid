@@ -80,10 +80,9 @@
                                         {{ $info->kategori }}
                                     </span>
                                 </td>
-                                <td class="py-4 px-6 text-gray-600">{{ $info->tanggal }}</td>
                                 <td class="py-4 px-6 text-center">
                                     <a href="{{ route('public.service.information-detail', ['id' => $info->id]) }}" 
-                                       class="inline-blok items-center px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium rounded-lg transition-colors">
+                                        class="inline-block items-center px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium rounded-lg transition-colors">
                                         Lihat Detail
                                     </a>
                                 </td>

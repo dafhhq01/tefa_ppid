@@ -21,7 +21,13 @@ Route::post('/permohonan-informasi', [ServiceController::class, 'submitRequest']
 
 // Pengaduan Masyarakat
 Route::get('/pengaduan', [ServiceController::class, 'complaintForm'])->name('public.service.complaint-form');
-Route::post('/pengaduan', [ServiceController::class, 'submitComplaint'])->name('public.service.complaint-form.submit');
+Route::post('/pengaduan', [ServiceController::class, 'storeComplaint'])->name('public.service.store-complaint');
 
-Route::get('/service/tracking', [ServiceController::class, 'tracking'])->name('public.service.tracking');
-Route::post('/service/tracking', [ServiceController::class, 'trackingResult'])->name('public.service.tracking-result');
+// Halaman tracking
+Route::get('/service/tracking', [ServiceController::class, 'trackingform'])->name('public.service.tracking');
+Route::post('/service/tracking', [ServiceController::class, 'trackingResult'])->name('public.service.tracking.check');
+
+// Halaman succsess
+Route::get('/success', function () {
+    return view('public.service.success');
+})->name('public.service.success');

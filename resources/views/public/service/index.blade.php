@@ -27,47 +27,42 @@
 
         <!-- Grid Layanan PPID -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            <!-- Daftar Informasi Publik -->
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-100 transition-all relative flex flex-col text-center">
-                <div class="mb-4">
-                    <i class="bi bi-journal-text text-4xl text-blue-600"></i>
-                </div>
-                <h5 class="font-bold text-gray-900 mb-2">Daftar Informasi Publik</h5>
-                <p class="text-sm text-gray-500 mb-4 grow">Akses berbagai dokumen, data, dan informasi publik secara transparan.</p>
-                <a href="{{ route('public.service.information-list') }}" class="absolute inset-0 z-10"></a>
-            </div>
+    
+        <!-- Daftar Informasi Publik -->
+        @include('public.service.components.service-card', [
+            'icon' => 'bi-journal-text text-blue-600',
+            'title' => 'Daftar Informasi Publik',
+            'description' => 'Akses berbagai dokumen, data, dan informasi publik secara transparan.',
+            'url' => route('public.service.information-list'),
+            'buttonText' => 'Akses Dokumen'
+        ])
 
-            <!-- Permohonan Informasi -->
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md hover:border-green-100 transition-all relative flex flex-col text-center">
-                <div class="mb-4">
-                    <i class="bi bi-file-earmark-plus text-4xl text-green-600"></i>
-                </div>
-                <h5 class="font-bold text-gray-900 mb-2">Permohonan Informasi</h5>
-                <p class="text-sm text-gray-500 mb-4 grow">Ajukan permohonan dokumen atau data informasi publik baru secara online.</p>
-                <a href="{{ route('public.service.request-form') }}" class="absolute inset-0 z-10"></a>
-            </div>
+        <!-- Permohonan Informasi -->
+        @include('public.service.components.service-card', [
+            'icon' => 'bi-file-earmark-plus text-green-600',
+            'title' => 'Permohonan Informasi',
+            'description' => 'Ajukan permohonan dokumen atau data informasi publik baru secara online.',
+            'url' => route('public.service.request-form'),
+            'buttonText' => 'Buat Permohonan'
+        ])
 
-            <!-- Pengaduan Keberatan -->
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md hover:border-amber-100 transition-all relative flex flex-col text-center">
-                <div class="mb-4">
-                    <i class="bi bi-exclamation-triangle text-4xl text-amber-500"></i>
-                </div>
-                <h5 class="font-bold text-gray-900 mb-2">Pengaduan Keberatan</h5>
-                <p class="text-sm text-gray-500 mb-4 grow">Sampaikan pengaduan atau pengajuan keberatan atas layanan informasi.</p>
-                <a href="{{ route('public.service.complaint-form') }}" class="absolute inset-0 z-10"></a>
-            </div>
+        <!-- Pengaduan Keberatan -->
+        @include('public.service.components.service-card', [
+            'icon' => 'bi-exclamation-triangle text-amber-500',
+            'title' => 'Pengaduan Keberatan',
+            'description' => 'Sampaikan pengaduan atau pengajuan keberatan atas layanan informasi.',
+            'url' => route('public.service.complaint-form'),
+            'buttonText' => 'Ajukan Pengaduan'
+        ])
 
-            <!-- Tracking Permohonan -->
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md hover:border-cyan-100 transition-all relative flex flex-col text-center">
-                <div class="mb-4">
-                    <i class="bi bi-search text-4xl text-cyan-600"></i>
-                </div>
-                <h5 class="font-bold text-gray-900 mb-2">Tracking Permohonan</h5>
-                <p class="text-sm text-gray-500 mb-4 grow">Lacak status perkembangan atau progres permohonan informasi.</p>
-                <a href="{{ route('public.service.tracking') }}" class="absolute inset-0 z-10"></a>
-            </div>
-
+        <!-- Tracking Permohonan -->
+        @include('public.service.components.service-card', [
+            'icon' => 'bi-search text-cyan-600',
+            'title' => 'Tracking Permohonan',
+            'description' => 'Lacak status perkembangan atau progres permohonan informasi.',
+            'url' => route('public.service.tracking'),
+            'buttonText' => 'Cek Status'
+        ])
         </div>
     </div>
 

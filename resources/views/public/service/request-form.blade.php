@@ -7,7 +7,7 @@
         <title>Form Permohonan Informasi Publik</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <!-- Bootstrap Icons (tetap dipertahankan untuk ikon panah/kirim) -->
+        <!-- Bootstrap Icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <style>
             body { font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -38,69 +38,67 @@
                             <form action="{{ route('public.service.request-form.submit') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                                 @csrf
 
-                                <!-- Nama Lengkap -->
-                                <div>
-                                    <label for="nama_lengkap" class="block text-sm font-semibold text-gray-700 mb-2">Nama Lengkap</label>
-                                    <input type="text" class="w-full px-4 py-2.5 bg-gray-50 border {{ $errors->has('nama_lengkap') ? 'border-red-500' : 'border-gray-300' }} rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all" id="nama_lengkap" name="nama_lengkap" value="{{ old('nama_lengkap') }}" placeholder="Masukkan nama lengkap" required>
-                                    @error('nama_lengkap')
-                                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                <!-- Menggunakan Komponen form-input untuk Nama Lengkap -->
+                                @include('public.service.components.form-input', [
+                                    'label' => 'Nama Lengkap',
+                                    'name' => 'nama_lengkap',
+                                    'type' => 'text',
+                                    'placeholder' => 'Masukkan nama lengkap',
+                                    'required' => true
+                                ])
 
-                                <!-- Email -->
-                                <div>
-                                    <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-                                    <input type="email" class="w-full px-4 py-2.5 bg-gray-50 border {{ $errors->has('email') ? 'border-red-500' : 'border-gray-300' }} rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all" id="email" name="email" value="{{ old('email') }}" placeholder="nama@email.com" required>
-                                    @error('email')
-                                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                <!-- Menggunakan Komponen form-input untuk Email -->
+                                @include('public.service.components.form-input', [
+                                    'label' => 'Email',
+                                    'name' => 'email',
+                                    'type' => 'email',
+                                    'placeholder' => 'nama@email.com',
+                                    'required' => true
+                                ])
 
-                                <!-- Nomor Telepon -->
-                                <div>
-                                    <label for="nomor_telepon" class="block text-sm font-semibold text-gray-700 mb-2">Nomor Telepon / WhatsApp</label>
-                                    <input type="text" class="w-full px-4 py-2.5 bg-gray-50 border {{ $errors->has('nomor_telepon') ? 'border-red-500' : 'border-gray-300' }} rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all" id="nomor_telepon" name="nomor_telepon" value="{{ old('nomor_telepon') }}" placeholder="08xxxxxxxxxx" required>
-                                    @error('nomor_telepon')
-                                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                <!-- Menggunakan Komponen form-input untuk Nomor Telepon -->
+                                @include('public.service.components.form-input', [
+                                    'label' => 'Nomor Telepon / WhatsApp',
+                                    'name' => 'nomor_telepon',
+                                    'type' => 'text',
+                                    'placeholder' => '08xxxxxxxxxx',
+                                    'required' => true
+                                ])
 
-                                <!-- NIK -->
-                                <div>
-                                    <label for="nik" class="block text-sm font-semibold text-gray-700 mb-2">NIK (Nomor Induk Kependudukan)</label>
-                                    <input type="text" class="w-full px-4 py-2.5 bg-gray-50 border {{ $errors->has('nik') ? 'border-red-500' : 'border-gray-300' }} rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all" id="nik" name="nik" value="{{ old('nik') }}" maxlength="16" placeholder="16 digit NIK KTP" required>
-                                    @error('nik')
-                                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                <!-- Menggunakan Komponen form-input untuk NIK -->
+                                @include('public.service.components.form-input', [
+                                    'label' => 'NIK (Nomor Induk Kependudukan)',
+                                    'name' => 'nik',
+                                    'type' => 'text',
+                                    'placeholder' => '16 digit NIK KTP',
+                                    'required' => true
+                                ])
 
-                                <!-- Informasi yang Diminta -->
-                                <div>
-                                    <label for="informasi_diminta" class="block text-sm font-semibold text-gray-700 mb-2">Informasi yang Diminta</label>
-                                    <input type="text" id="informasi_diminta" name="informasi_diminta" value="{{ old('informasi_diminta') }}" class="w-full px-4 py-2.5 bg-gray-50 border {{ $errors->has('informasi_diminta') ? 'border-red-500' : 'border-gray-300' }} rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all" placeholder="masukkan informasi yang anda minta" required>
-                                    @error('informasi_diminta')
-                                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                <!-- Menggunakan Komponen form-input untuk Informasi yang Diminta -->
+                                @include('public.service.components.form-input', [
+                                    'label' => 'Informasi yang Diminta',
+                                    'name' => 'informasi_diminta',
+                                    'type' => 'text',
+                                    'placeholder' => 'masukkan informasi yang anda minta',
+                                    'required' => true
+                                ])
 
                                 <!-- Alasan Permohonan -->
                                 <div>
-                                    <label for="alasan_permohonan" class="block text-sm font-semibold text-gray-700 mb-2">Alasan Permohonan Informasi</label>
+                                    <label for="alasan_permohonan" class="block text-sm font-semibold text-gray-700 mb-2">Alasan Permohonan Informasi <span class="text-red-500">*</span></label>
                                     <textarea class="w-full px-4 py-2.5 bg-gray-50 border {{ $errors->has('alasan_permohonan') ? 'border-red-500' : 'border-gray-300' }} rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all" id="alasan_permohonan" name="alasan_permohonan" rows="3" placeholder="Jelaskan tujuan penggunaan informasi publik..." required>{{ old('alasan_permohonan') }}</textarea>
                                     @error('alasan_permohonan')
                                         <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                                     @enderror
                                 </div>
 
-                                <!-- Lampiran File -->
-                                <div>
-                                    <label for="lampiran" class="block text-sm font-semibold text-gray-700 mb-2">Lampiran Dokumen Pendukung (KTP/Surat Pendukung)</label>
-                                    <input type="file" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 border {{ $errors->has('lampiran') ? 'border-red-500' : 'border-gray-300' }} rounded-xl bg-gray-50 cursor-pointer" id="lampiran" name="lampiran">
-                                    <p class="mt-1 text-xs text-gray-500">Format: PDF, DOC, DOCX, JPG, PNG. Maksimal 5MB.</p>
-                                    @error('lampiran')
-                                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                <!-- File Upload -->
+                                @include('public.service.components.file-upload', [
+                                    'label' => 'Lampiran Dokumen Pendukung (KTP/Surat Pendukung)',
+                                    'name' => 'lampiran',
+                                    'helper' => 'Format: PDF, DOC, DOCX, JPG, PNG. Maksimal 5MB.',
+                                    'required' => false
+                                ])
 
                                 <!-- Tombol Aksi -->
                                 <div class="flex items-center justify-between pt-2">

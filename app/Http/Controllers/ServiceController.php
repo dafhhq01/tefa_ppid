@@ -68,7 +68,7 @@ class ServiceController extends Controller
     }
 
     // Tampilan halaman tracking
-    public function tracking()
+    public function trackingform()
     {
         return view('public.service.tracking');
     }
@@ -76,7 +76,27 @@ class ServiceController extends Controller
     // Tampilan hasil tracking
     public function trackingResult(Request $request)
     {
-        $trackingNumber = $request->input('tracking_number');
-        return view('public.service.tracking-result', compact('trackingNumber'));
+        $request->validate([
+        'no_tiket' => 'required|string',
+    ]);
+
+    $noTiket = $request->input('no_tiket');
+
+    // Contoh data simulasi berdasarkan nomor tiket
+    if ($noTiket === 'REQ-20260720-0001') {
+        $trackingResult = (object) [
+            'no_tiket' => 'REQ-20260720-0001',
+            'nama_lengkap' => 'Budi Santoso',
+            'tanggal' => '20 Juli 2026',
+            'jenis_layanan' => 'Permohonan Informasi Publik',
+            'status' => 'Diproses', // Pilihan: Pending, Diproses, Selesai, Ditolak
+        ];
+
+        // Mengarahkan ke file view tracking-result.blade.php yang baru saja dibuat
+        return view('public.service.tracking-result', compact('trackingResult'));
+    }
+
+    // Jika tiket tidak ditemukan, kembalikan ke halaman form dengan pesan error
+    return back()->withInput()->with('error', 'Nomor tiket tidak ditemukan. Silakan periksa kembali.');
     }
 }
