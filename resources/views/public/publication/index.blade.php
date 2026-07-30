@@ -41,7 +41,7 @@
 </html> --}}
 
 
-@extends('public.layout')
+@extends('components.public.layout')
 
 @section('content')
 <section class="max-w-6xl mx-auto px-4 py-10">

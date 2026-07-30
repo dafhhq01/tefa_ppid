@@ -8,3 +8,14 @@ Route::get('/berita/{slug}', [PublicationController::class, 'detail'])->name('ne
 Route::get('/laporan', [PublicationController::class, 'publication'])->name('publication.report');
 Route::get('/download', [PublicationController::class, 'document'])->name('document.index');
 Route::get('/pengadaan', [PublicationController::class, 'procurement'])->name('procurement.index');
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Public\HomeController;
+
+// Route::get('/', function () {
+//     return view('public.home');
+// });
+
+Route::get('/', [HomeController::class, 'index']);
+
+
+
