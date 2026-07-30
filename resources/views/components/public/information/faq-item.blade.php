@@ -1,16 +1,8 @@
-{{-- resources/views/public/information/components/faq-item.blade.php --}}
 @props(['faq', 'index' => 0])
 
-<div class="accordion-item">
-    <h2 class="accordion-header" id="heading-{{ $index }}">
-        <button class="accordion-button collapsed" type="button"
-                data-bs-toggle="collapse" data-bs-target="#collapse-{{ $index }}">
-            {{ $faq['question'] }}
-        </button>
-    </h2>
-    <div id="collapse-{{ $index }}" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-        <div class="accordion-body">
-            {{ $faq['answer'] }}
-        </div>
-    </div>
-</div>
+<details class="mb-3 rounded-lg border border-gray-200 bg-white p-5">
+    <summary class="cursor-pointer text-sm font-semibold text-gray-900">
+        {{ $faq['question'] }}
+    </summary>
+    <p class="mt-3 text-sm text-gray-600">{{ $faq['answer'] }}</p>
+</details>
