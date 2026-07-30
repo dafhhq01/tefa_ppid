@@ -1,9 +1,4 @@
-{{-- resources/views/public/information/faq.blade.php --}}
-@extends('layouts.public')
-
-@section('title', 'FAQ')
-
-@section('content')
+<x-public.layout>
 <section class="py-5">
     <div class="container">
         <h1 class="mb-4">Pertanyaan Umum (FAQ)</h1>
@@ -15,4 +10,4 @@
         </div>
     </div>
 </section>
-@endsection
+</x-public.layout>

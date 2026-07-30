@@ -1,9 +1,4 @@
-{{-- resources/views/public/information/detail.blade.php --}}
-@extends('layouts.public')
-
-@section('title', $information['title'])
-
-@section('content')
+<x-public.layout>
 <section class="py-5">
     <div class="container">
         <nav aria-label="breadcrumb">
@@ -38,4 +33,4 @@
         </article>
     </div>
 </section>
-@endsection
+</x-public.layout>

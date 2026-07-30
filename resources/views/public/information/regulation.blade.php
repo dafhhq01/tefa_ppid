@@ -1,9 +1,4 @@
-{{-- resources/views/public/information/regulation.blade.php --}}
-@extends('layouts.public')
-
-@section('title', 'Regulasi PPID')
-
-@section('content')
+<x-public.layout>
 <section class="py-5">
     <div class="container">
         <h1 class="mb-4">Regulasi PPID</h1>
@@ -26,4 +21,4 @@
         @endforeach
     </div>
 </section>
-@endsection
+</x-public.layout>

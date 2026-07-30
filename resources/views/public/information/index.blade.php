@@ -1,9 +1,4 @@
-{{-- resources/views/public/information/index.blade.php --}}
-@extends('layouts.public')
-
-@section('title', 'Klasifikasi Informasi')
-
-@section('content')
+<x-public.layout>
 <section class="py-5">
     <div class="container">
         <h1 class="mb-2">Klasifikasi Informasi</h1>
@@ -21,4 +16,4 @@
         </div>
     </div>
 </section>
-@endsection
+</x-public.layout>
