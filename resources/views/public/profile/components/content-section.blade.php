@@ -1,68 +1,67 @@
-<article>
+@props([
+    'title',
+    'image' => null,
+    'content',
+    'buttonText' => null,
+    'buttonLink' => null,
+    'file' => null,
+])
 
-    <h1>
+<div>
 
-        {{ $title }}
-
-    </h1>
-
+    {{-- Gambar --}}
     @if ($image)
 
         <img
-            src="{{ $image }}"
+            src="{{ asset($image) }}"
             alt="{{ $title }}"
-            style="
-                width: 100%;
-                max-height: 500px;
-                object-fit: cover;
-                border-radius: 12px;
-                margin: 25px 0;
-            "
+            class="mb-10 h-80 w-full rounded-2xl object-cover"
         >
 
     @endif
 
-    <div>
+
+    {{-- Konten CMS --}}
+    <div
+        class="space-y-6 text-base leading-8 text-gray-600"
+    >
 
         {!! $content !!}
 
     </div>
 
+
+    {{-- File --}}
     @if ($file)
 
-        <div style="margin-top: 30px;">
+        <div class="mt-10">
 
             <a
-                href="{{ $file }}"
-                target="_blank"
+                href="{{ asset($file) }}"
+                class="inline-flex items-center rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
             >
-
-                Download File
-
+                Unduh Dokumen
             </a>
 
         </div>
 
     @endif
 
-    @if (
-        $button_text
-        &&
-        $button_link
-    )
 
-        <div style="margin-top: 30px;">
+    {{-- Button --}}
+    @if ($buttonText && $buttonLink)
+
+        <div class="mt-10">
 
             <a
-                href="{{ $button_link }}"
+                href="{{ $buttonLink }}"
+                class="inline-flex items-center rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
             >
-
-                {{ $button_text }}
-
+                {{ $buttonText }}
             </a>
 
         </div>
 
     @endif
 
-</article>
+</div>

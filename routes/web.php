@@ -1,45 +1,35 @@
 <?php
 
-use App\Http\Controllers\Public\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Public\HomeController;
+use App\Http\Controllers\Public\ProfileController;
 
-// Route::get('/', function () {
-//     return view('public.home');
-// });
+// ==========================
+// FE1 - HOME
+// ==========================
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])
+    ->name('home');
 
 
+// ==========================
+// FE2 - PROFILE
+// ==========================
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Halaman utama profil
 Route::get('/profil', [ProfileController::class, 'index'])
     ->name('profile.index');
 
-// Halaman Profil PPID
-Route::get('/profil-ppid', [ProfileController::class, 'detail'])
-    ->defaults('slug', 'profil-ppid')
-    ->name('profile.ppid');
+Route::get('/profil/{slug}', [ProfileController::class, 'detail'])
+    ->whereIn('slug', [
+        'profil-ppid',
+        'profil-sekolah',
+        'visi-misi',
+        'tugas-fungsi',
+    ])
+    ->name('profile.detail');
 
-// Halaman Profil Sekolah
-Route::get('/profil-sekolah', [ProfileController::class, 'detail'])
-    ->defaults('slug', 'profil-sekolah')
-    ->name('profile.school');
-
-// Halaman Visi dan Misi
-Route::get('/visi-misi', [ProfileController::class, 'detail'])
-    ->defaults('slug', 'visi-misi')
-    ->name('profile.vision');
-
-// Halaman Tugas dan Fungsi
-Route::get('/tugas-fungsi', [ProfileController::class, 'detail'])
-    ->defaults('slug', 'tugas-fungsi')
-    ->name('profile.duties');
-
-// Halaman Struktur Organisasi
-Route::get('/struktur-organisasi', [ProfileController::class, 'organization'])
-    ->name('profile.organization');
+Route::get(
+    '/struktur-organisasi',
+    [ProfileController::class, 'organization']
+)->name('profile.organization');

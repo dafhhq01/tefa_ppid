@@ -1,411 +1,155 @@
-<!DOCTYPE html>
-<html lang="id">
+<x-public.layout>
 
-<head>
+    {{-- HERO --}}
+    <section class="relative flex min-h-[650px] items-center overflow-hidden">
 
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
-        Profil | PPID SMK Negeri 1 Katapang
-    </title>
-
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
-
-    <style>
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f5f8fa;
-            color: #263238;
-        }
-
-        .navbar-ppid {
-            background-color: white;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .navbar-brand {
-            color: #0b4f6c !important;
-            font-weight: 800;
-        }
-
-        .nav-link {
-            font-weight: 600;
-        }
-
-        .page-header {
-            min-height: 320px;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
-
-            background:
-                linear-gradient(
-                    rgba(5, 55, 78, 0.88),
-                    rgba(5, 55, 78, 0.88)
-                ),
-                url(
-                    'https://placehold.co/1600x550/0B4F6C/FFFFFF?text=Informasi+Profil'
-                );
-
-            background-size: cover;
-            background-position: center;
-        }
-
-        .profile-card {
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: 0.25s;
-        }
-
-        .profile-card:hover {
-            transform: translateY(-6px);
-        }
-
-        .profile-card img {
-            height: 220px;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        .btn-ppid {
-            background-color: #0b4f6c;
-            color: white;
-        }
-
-        .btn-ppid:hover {
-            background-color: #083b52;
-            color: white;
-        }
-
-        .footer-ppid {
-            background-color: #083b52;
-            color: white;
-        }
-
-    </style>
-
-</head>
-
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-light navbar-ppid">
-
-    <div class="container">
-
-        <a
-            class="navbar-brand"
-            href="/profil"
+        {{-- Background mengikuti konsep hero FE1 --}}
+        <img
+            src="{{ asset('img/background_sklh.jpg') }}"
+            alt="Profil PPID"
+            class="absolute inset-0 h-full w-full object-cover"
         >
 
-            PPID SMKN 1 Katapang
+        {{-- Overlay --}}
+        <div class="absolute inset-0 bg-slate-900/70"></div>
 
-        </a>
+        {{-- Isi --}}
+        <div class="relative z-10 mx-auto w-full max-w-7xl px-6">
 
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarPPID"
-        >
+            <div class="max-w-3xl">
 
-            <span class="navbar-toggler-icon"></span>
+                <p class="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">
+                    PPID SMK Negeri 1 Katapang
+                </p>
 
-        </button>
+                <h1 class="mt-6 text-5xl font-extrabold leading-tight text-white lg:text-6xl">
+                    Profil PPID
+                </h1>
 
-        <div
-            class="collapse navbar-collapse"
-            id="navbarPPID"
-        >
+                <p class="mt-6 text-lg leading-8 text-gray-200">
+                    Mengenal Pejabat Pengelola Informasi dan Dokumentasi
+                    serta informasi profil SMK Negeri 1 Katapang.
+                </p>
 
-            <ul class="navbar-nav ms-auto">
-
-                <li class="nav-item">
-
-                    <a
-                        class="nav-link"
-                        href="/profil"
-                    >
-
-                        Profil
-
-                    </a>
-
-                </li>
-
-                <li class="nav-item">
+                <div class="mt-10 flex flex-wrap gap-4">
 
                     <a
-                        class="nav-link"
-                        href="/profil-ppid"
+                        href="#informasi-profil"
+                        class="rounded-xl bg-blue-600 px-7 py-4 font-semibold text-white transition hover:bg-blue-700"
                     >
-
-                        PPID
-
+                        Lihat Informasi
                     </a>
-
-                </li>
-
-                <li class="nav-item">
 
                     <a
-                        class="nav-link"
-                        href="/profil-sekolah"
+                        href="{{ route('profile.organization') }}"
+                        class="rounded-xl border border-white px-7 py-4 font-semibold text-white transition hover:bg-white hover:text-slate-900"
                     >
-
-                        Sekolah
-
+                        Struktur Organisasi
                     </a>
 
-                </li>
+                </div>
 
-                <li class="nav-item">
-
-                    <a
-                        class="nav-link"
-                        href="/visi-misi"
-                    >
-
-                        Visi & Misi
-
-                    </a>
-
-                </li>
-
-                <li class="nav-item">
-
-                    <a
-                        class="nav-link"
-                        href="/struktur-organisasi"
-                    >
-
-                        Organisasi
-
-                    </a>
-
-                </li>
-
-            </ul>
+            </div>
 
         </div>
 
-    </div>
+        {{-- Gelombang, mengikuti homepage FE1 --}}
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
 
-</nav>
-
-<section class="page-header">
-
-    <div class="container">
-
-        <h1 class="display-5 fw-bold">
-
-            Profil
-
-        </h1>
-
-        <p>
-
-            Beranda / Profil
-
-        </p>
-
-    </div>
-
-</section>
-
-<section class="py-5">
-
-    <div class="container">
-
-        <div class="text-center mb-5">
-
-            <p class="text-primary fw-bold">
-
-                INFORMASI PUBLIK
-
-            </p>
-
-            <h2 class="fw-bold">
-
-                Profil PPID dan Sekolah
-
-            </h2>
-
-            <p
-                class="text-secondary mx-auto"
-                style="max-width: 700px;"
+            <svg
+                class="block h-28 w-full"
+                viewBox="0 0 1440 120"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
             >
-
-                Informasi mengenai PPID, sekolah,
-                visi dan misi, tugas dan fungsi,
-                serta struktur organisasi.
-
-            </p>
+                <path
+                    fill="#f9fafb"
+                    d="M0,64L80,74.7C160,85,320,107,480,101.3C640,96,800,64,960,58.7C1120,53,1280,75,1360,85.3L1440,96L1440,120L0,120Z"
+                />
+            </svg>
 
         </div>
 
-        <div class="row g-4">
+    </section>
 
-            @foreach ($pages as $page)
 
-                <div class="col-md-6">
+    {{-- DAFTAR PROFIL --}}
+    <section
+        id="informasi-profil"
+        class="bg-gray-50 py-24"
+    >
 
-                    <div
-                        class="card profile-card shadow-sm h-100"
+        <div class="mx-auto max-w-7xl px-6">
+
+            {{-- Judul --}}
+            <div class="text-center">
+
+                <p class="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
+                    Informasi Publik
+                </p>
+
+                <h2 class="mt-3 text-4xl font-bold text-gray-900">
+                    Informasi Profil
+                </h2>
+
+                <div class="mx-auto mt-4 h-1 w-20 rounded bg-blue-600"></div>
+
+                <p class="mx-auto mt-5 max-w-2xl text-gray-600">
+                    Akses informasi mengenai PPID dan SMK Negeri 1 Katapang.
+                </p>
+
+            </div>
+
+
+            {{-- Card --}}
+            <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+                @foreach ($profiles as $profile)
+
+                    <a
+                        href="{{ $profile['url'] }}"
+                        class="group flex min-h-[300px] flex-col rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl"
                     >
 
-                        <img
-                            src="{{ $page['banner_image'] }}"
-                            alt="{{ $page['title'] }}"
-                        >
+                        {{-- Icon --}}
+                        <div class="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-3xl">
 
-                        <div class="card-body p-4">
-
-                            <h3 class="h4 fw-bold">
-
-                                {{ $page['title'] }}
-
-                            </h3>
-
-                            <p class="text-secondary">
-
-                                {{ $page['description'] }}
-
-                            </p>
-
-                            <a
-                                href="/{{ $page['slug'] }}"
-                                class="btn btn-ppid"
-                            >
-
-                                Lihat Selengkapnya →
-
-                            </a>
+                            {{ $profile['icon'] }}
 
                         </div>
 
-                    </div>
 
-                </div>
+                        {{-- Judul --}}
+                        <h3 class="mt-6 text-2xl font-semibold text-gray-900 group-hover:text-blue-600">
 
-            @endforeach
-
-            <div class="col-md-6">
-
-                <div
-                    class="card profile-card shadow-sm h-100"
-                >
-
-                    <img
-                        src="https://placehold.co/1200x600/397367/FFFFFF?text=Struktur+Organisasi"
-                        alt="Struktur Organisasi"
-                    >
-
-                    <div class="card-body p-4">
-
-                        <h3 class="h4 fw-bold">
-
-                            Struktur Organisasi
+                            {{ $profile['title'] }}
 
                         </h3>
 
-                        <p class="text-secondary">
 
-                            Informasi mengenai struktur,
-                            jabatan, dan anggota organisasi PPID.
+                        {{-- Deskripsi --}}
+                        <p class="mt-4 flex-1 leading-7 text-gray-600">
+
+                            {{ $profile['description'] }}
 
                         </p>
 
-                        <a
-                            href="/struktur-organisasi"
-                            class="btn btn-ppid"
-                        >
 
-                            Lihat Struktur →
+                        {{-- Button --}}
+                        <span class="mt-8 inline-flex w-fit items-center rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition group-hover:bg-blue-700">
 
-                        </a>
+                            Lihat Informasi
 
-                    </div>
+                        </span>
 
-                </div>
+                    </a>
 
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<footer class="footer-ppid py-5">
-
-    <div class="container">
-
-        <div class="row">
-
-            <div class="col-md-7">
-
-                <h4 class="fw-bold">
-
-                    PPID SMK Negeri 1 Katapang
-
-                </h4>
-
-                <p>
-
-                    Portal pelayanan informasi publik
-                    SMK Negeri 1 Katapang.
-
-                </p>
-
-            </div>
-
-            <div class="col-md-5">
-
-                <h5>
-
-                    Informasi Publik
-
-                </h5>
-
-                <p>
-
-                    Informasi disediakan secara terbuka,
-                    mudah diakses, dan dapat diperbarui.
-
-                </p>
+                @endforeach
 
             </div>
 
         </div>
 
-        <hr>
+    </section>
 
-        <p class="text-center mb-0">
-
-            © {{ date('Y') }}
-            PPID SMK Negeri 1 Katapang
-
-        </p>
-
-    </div>
-
-</footer>
-
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-></script>
-
-</body>
-
-</html>
+</x-public.layout>

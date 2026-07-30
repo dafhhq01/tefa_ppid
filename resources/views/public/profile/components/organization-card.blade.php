@@ -1,41 +1,49 @@
-<div
-    class="card border-0 shadow-sm
-           text-center h-100"
->
+@props([
+    'member',
+])
 
-    <div class="pt-4">
+<div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl">
+
+    {{-- Foto --}}
+    @if ($member['photo'])
 
         <img
-            src="{{ $member->photo }}"
-            alt="{{ $member->name }}"
-            class="rounded-circle shadow-sm"
-            width="150"
-            height="150"
-            style="object-fit: cover;"
+            src="{{ asset($member['photo']) }}"
+            alt="{{ $member['name'] }}"
+            class="h-64 w-full object-cover"
         >
 
-    </div>
+    @else
 
-    <div class="card-body p-4">
+        <div class="flex h-64 items-center justify-center bg-blue-100">
 
-        <h4 class="fw-bold">
+            <i class="fa-solid fa-user text-7xl text-blue-600"></i>
 
-            {{ $member->name }}
+        </div>
 
-        </h4>
+    @endif
 
-        <p
-            class="fw-bold"
-            style="color: #0B4F6C;"
-        >
 
-            {{ $member->position }}
+    {{-- Informasi --}}
+    <div class="p-7 text-center">
 
-        </p>
+        <span class="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
 
-        <p class="text-secondary mb-0">
+            {{ $member['position'] }}
 
-            {{ $member->description }}
+        </span>
+
+
+        <h3 class="mt-5 text-xl font-semibold text-gray-900">
+
+            {{ $member['name'] }}
+
+        </h3>
+
+
+        <p class="mt-3 leading-7 text-gray-600">
+
+            {{ $member['description'] }}
 
         </p>
 
