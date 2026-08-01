@@ -18,23 +18,27 @@ class HomeController extends Controller
         ];
 
         $statistics = [
-            [
-                'title' => 'Informasi Publik',
-                'value' => 120,
-            ],
-            [
-                'title' => 'Dokumen',
-                'value' => 56,
-            ],
-            [
-                'title' => 'Berita',
-                'value' => 32,
-            ],
-            [
-                'title' => 'Permohonan',
-                'value' => 15,
-            ],
-        ];
+        [
+            'label' => 'Informasi Publik',
+            'value' => 120,
+            'icon' => 'fa-file-lines',
+        ],
+        [
+            'label' => 'Dokumen',
+            'value' => 56,
+            'icon' => 'fa-folder-open',
+        ],
+        [
+            'label' => 'Berita',
+            'value' => 32,
+            'icon' => 'fa-newspaper',
+        ],
+        [
+            'label' => 'Permohonan',
+            'value' => 15,
+            'icon' => 'fa-file-circle-plus',
+        ],
+    ];
 
         $services = [
             [
