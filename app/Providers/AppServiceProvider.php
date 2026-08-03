@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Banner;
+use App\Models\Setting;
+use App\Observers\ActivityObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Banner::observe(ActivityObserver::class);
+        Setting::observe(ActivityObserver::class);
     }
 }
